@@ -30,12 +30,7 @@ ifeq ($(OS), linux)
 endif
 
 
-all: clean check s21_matrix.a test
-
-check:
-	$(CPPCH) $(CHECK_FILES)
-	$(COPY) $(LINTCFG_WAY) $(LINTCFG)
-	$(PY) $(LINT_WAY) $(EXTENSION) $(CHECK_FILES)
+all: clean matrix.a test
 
 clean:
 	$(DELETE) $(TO_DELETE) $(EXECUTABLE) $(LINTCFG)
@@ -50,7 +45,7 @@ gcov_report: test
 	open report/index.html
 
 
-s21_matrix.a:
+matrix.a:
 	$(CC) -c $(FUNCS)
 	ar rc s21_matrix.a s21_matrix.o
 	ar rc libs21_matrix.a s21_matrix.o
