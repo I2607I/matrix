@@ -9,25 +9,13 @@ def mul(a, b):
             for j in range(column):
                 for k in range(len_column_a):
                     c[i][j] += a[i][k]*b[k][j]
+        return c
     else:
-        c = -1
-    return c
-
-def mul_(a, b):
-    len_column_a = len(a[0])
-    len_row_b = len(b)
-    if len_column_a == len_row_b:
-        row = len(a)
-        column = len(b[0])
-        c = init(row, column)
-
+        return None
 
 def init(row, column):
     c = [[0 for i in range(column)] for j in range(row)]
     return c
-
-def init_2(row, column):
-    pass
 
 def trans(a):
     row = len(a)
@@ -42,14 +30,18 @@ def det(a):
     row = len(a)
     column = len(a[0])
     if row == column:
+        res = 0
         n = row
         if n == 2:
-            return a[0][0]*a[1][1] - a[1][0]*a[0][1]
+            res = a[0][0]*a[1][1] - a[1][0]*a[0][1]
         else:
-            res = 0
             for i in range(n):
                 res += a[0][i]*det(minor(a, 0, i))*(-1)**i
+        if abs(res) < 0.1**6:
+            return None
+        else:
             return res
+    return None
 
 def minor(a, i, j):
     row = len(a)
@@ -67,9 +59,9 @@ def minor(a, i, j):
                     c[ii][jj] = a[ii+1][jj]
                 if ii >= i and jj >= j:
                     c[ii][jj] = a[ii+1][jj+1]
+        return c
     else:
-        c = -1
-    return c
+        return None
 
 def al_dop(a, i , j):
     return (-1)**(i+j)*det(minor(a, i, j))
@@ -93,6 +85,8 @@ def inverse(a):
         n = row
         c = init(n, n)
         dett = det(a)
+        if dett is None:
+            return None
         c = adj(a)
         c = mult_number(c, 1/dett)
         return c
