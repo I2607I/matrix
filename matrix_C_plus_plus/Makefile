@@ -19,4 +19,4 @@ gcov_report: test
 	xdg-open report/index.html
 
 clean:
-	rm -rf ./*.o ./*.a ./a.out ./*.gcno ./*.gcda ./report *.info ./*.info report ./Test .out
+	rm -rf ./*.o ./*.a ./a.out ./*.gcno ./*.gcda ./report *.info ./*.info report ./Test ./*out
