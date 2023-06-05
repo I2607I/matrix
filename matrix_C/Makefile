@@ -33,7 +33,7 @@ endif
 all: clean matrix.a test
 
 clean:
-	$(DELETE) $(TO_DELETE) $(EXECUTABLE) $(LINTCFG)
+	$(DELETE) $(TO_DELETE) $(EXECUTABLE) $(LINTCFG) report
 	
 test:
 	$(CC) $(DEBUG_FLAG) $(GCOV_FLAG) $(TEST_C) -o $(EXECUTABLE) $(TEST_FLAGS)
