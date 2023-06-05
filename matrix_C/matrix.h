@@ -1,5 +1,5 @@
-#ifndef SRC_S21_MATRIX_H_
-#define SRC_S21_MATRIX_H_
+#ifndef SRC_MATRIX_H_
+#define SRC_MATRIX_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,5 +36,5 @@ matrix_t minorr(matrix_t *A, int i, int j);
 void check_type(matrix_t *A);
 
 
-#endif  // SRC_S21_MATRIX_H_
+#endif  // SRC_MATRIX_H_
 

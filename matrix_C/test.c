@@ -1,5 +1,5 @@
 #include <check.h>
-#include "s21_matrix.h"
+#include "matrix.h"
 
 
 START_TEST(s21_create_matrix_test) {

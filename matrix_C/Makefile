@@ -2,11 +2,11 @@ TEST_FLAGS=-I -L -lcheck `pkg-config --cflags --libs check`
 CPP_FLAGS=-Wall -Wextra -Werror
 DEBUG_FLAG=-g
 GCOV_FLAG=--coverage
-OBJECTS=s21_matrix.o s21_test.o
-FUNCS=s21_matrix.c
-TEST_C=s21_test.c s21_matrix.c 
-HEADER=s21_matrix.h
-EXECUTABLE=s21_test.out
+OBJECTS=matrix.o test.o
+FUNCS=matrix.c
+TEST_C=test.c matrix.c 
+HEADER=matrix.h
+EXECUTABLE=test.out
 CC=gcc
 LINT_WAY=../materials/linters/cpplint.py
 LINTCFG_WAY=../materials/linters/CPPLINT.cfg
@@ -37,22 +37,22 @@ clean:
 	
 test:
 	$(CC) $(DEBUG_FLAG) $(GCOV_FLAG) $(TEST_C) -o $(EXECUTABLE) $(TEST_FLAGS)
-	./s21_test.out
+	./test.out
 
 gcov_report: test
 	lcov -t "test" -o test.info -c -d .
 	genhtml -o report test.info
-	open report/index.html
+	xdg-open report/index.html
 
 
 matrix.a:
 	$(CC) -c $(FUNCS)
-	ar rc s21_matrix.a s21_matrix.o
-	ar rc libs21_matrix.a s21_matrix.o
-	ranlib s21_matrix.a
-	ranlib libs21_matrix.a
+	ar rc matrix.a matrix.o
+	ar rc libs_matrix.a matrix.o
+	ranlib matrix.a
+	ranlib libs_matrix.a
 
-valgrind_check:
+valgrind_check: all
 	CK_FORK=no valgrind --leak-check=full --tool=memcheck -s ./$(EXECUTABLE)
 
 leaks_check:
